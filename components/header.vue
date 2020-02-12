@@ -22,3 +22,8 @@ export default {
   props: ['post']
 }
 </script>
+<style lang="scss" scoped >
+  .header-main__title a{
+    color:$color;
+  }
+</style>
