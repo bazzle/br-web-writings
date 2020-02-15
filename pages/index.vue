@@ -1,25 +1,14 @@
 <template>
   <div>
-    <blogHeader></blogHeader>
-    <!-- render data of the person -->
-    <!-- render blog posts -->
-    <section class="body-container">
-      <ul class="items-list wrapper">
-        <li class="item" v-for="post in posts" :key="post.id">
-          <article-preview :post="post"></article-preview>
-        </li>
-      </ul>
-    </section>
-    <vue-markdown>{{ about.fields.aboutList }}</vue-markdown>
+    <BlogFeed :postFeed="posts" ></BlogFeed>
     <aboutMe :aboutData="about" ></aboutMe>
   </div>
 </template>
 
 <script>
   import {createClient} from '~/plugins/contentful.js'
-  import blogHeader from '~/components/header.vue'
-  import ArticlePreview from '~/components/article-preview.vue'
-  import aboutMe from '~/components/about.vue'
+  import aboutMe from '~/components/about'
+  import BlogFeed from '~/components/blogFeed'
 
   const client = createClient()
 
@@ -41,9 +30,8 @@
       }).catch(console.error)
     },
     components: {
-      ArticlePreview,
-      blogHeader,
-      aboutMe
+      aboutMe,
+      BlogFeed
     }
   }
 </script>

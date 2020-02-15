@@ -1,1 +1,179 @@
-$color: green;
+///////// RESET ////////////////////////////////////////////////////////////////////////
+
+html, body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+svg {
+    color: currentColor;
+}
+
+// To make every element border-box, and remove margin/padding
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+svg {
+    fill: currentColor;
+}
+
+button {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+}
+
+///////// CLASSES ////////////////////////////////////////////////////////////////////////
+
+// html
+html {
+    font-family: $font-brand;
+    font-size: $font-size-base;
+    color: $color-text;
+}
+
+// body
+body {
+    font-size: $font-size-std;
+    line-height: $line-height;
+}
+
+// resets
+input, textarea, select, button {
+    font-size: inherit;
+}
+
+// resets
+p, ul, ol {
+    padding: 0;
+    margin: 0;
+    line-height: $line-height;
+    list-style: none;
+}
+
+// headings
+h1, h2, h3, h4, h5 {
+    font-size: $font-size-std;
+    font-weight: $std;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+
+// anchors
+a {
+    @extend %anchor;
+}
+
+// button
+
+.button {
+    background-color: $color-brand;
+    border: 0;
+    color: $white;
+    padding: .8em 1em;
+    border-radius: 3px;
+    font-weight: $bold;
+    display: inline-block;
+    font-size: inherit;
+    line-height: 1.4;
+    letter-spacing: .01em;
+    transition: background-color .2s;
+    cursor: pointer;
+
+    span {
+        padding-right: .5em;
+
+        @include text-underline($color-brand);
+    }
+
+    &:hover, &:focus {
+        color: $white;
+        background-color: darken($color-brand, 10);
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    &__icon {
+        display: block;
+        width: 15px;
+        height: 15px;
+
+        &--right {}
+
+        &--down {
+            transform: rotate(90deg);
+        }
+
+        &--left {
+            transform: rotate(180deg);
+        }
+
+        &--up {
+            transform: rotate(270deg);
+        }
+    }
+
+    &--outline {
+        background-color: transparent;
+        border: 1px solid $color-brand;
+        color: $black;
+    }
+}
+
+.link-styled {
+    font-weight: $bold;
+    display: inline-block;
+    font-size: inherit;
+    line-height: 1.4;
+    letter-spacing: .01em;
+    cursor: pointer;
+
+    @include text-underline($color-brand);
+}
+
+// screen reader only
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+// Turn button into inline link
+.button-inline {
+    @include button-inline;
+}
+
+// text no break
+.nobreak {
+    white-space: nowrap;
+}
+
+// padding resets
+.nopadding {
+    padding: 0 !important;
+}
+
+.nopadding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.nopadding-top {
+    padding-top: 0 !important;
+}
