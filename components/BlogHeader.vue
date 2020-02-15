@@ -6,7 +6,7 @@
           <div class="row">
             <div class="header-main__inner">
               <h2 class="header-main__title">
-                <a href="/">Barry Richards &nbsp;/&nbsp; Web Designer</a>
+                <a href="/">Barry Richards</a> &nbsp;/&nbsp; Web Designer
               </h2>
             </div>
           </div>

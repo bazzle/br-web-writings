@@ -1,14 +1,14 @@
 <template>
   <div>
-    <BlogFeed :postFeed="posts" ></BlogFeed>
-    <aboutMe :aboutData="about" ></aboutMe>
+    <BlogFeed :postFeed="posts" />
+    <AboutMe :aboutData="about" />
   </div>
 </template>
 
 <script>
   import {createClient} from '~/plugins/contentful.js'
-  import aboutMe from '~/components/about'
-  import BlogFeed from '~/components/blogFeed'
+  import AboutMe from '~/components/AboutMe'
+  import BlogFeed from '~/components/BlogFeed'
 
   const client = createClient()
 
@@ -30,7 +30,7 @@
       }).catch(console.error)
     },
     components: {
-      aboutMe,
+      AboutMe,
       BlogFeed
     }
   }
