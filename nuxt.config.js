@@ -1,5 +1,5 @@
 const config = require('./contentful.json')
-
+import axios from 'axios';
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID,
@@ -19,6 +19,12 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ]
+  },
+  generate: {
+    routes: [
+      '/git-commands-etc',
+      '/how-to-learn-from-tutorial-videos'
     ]
   },
   /*
