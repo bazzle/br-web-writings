@@ -31,7 +31,8 @@ import ArticleBody from '~/components/ArticleBody'
 const client = createClient()
 
 export default {
-  asyncData ({ env, params }) {
+  asyncData ({ env, params, payload }) {
+    if (payload) return { post: payload };
     return client.getEntries({
       'content_type': env.CTF_BLOG_POST_TYPE_ID,
       'fields.slug': params.slug

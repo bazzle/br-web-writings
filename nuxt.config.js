@@ -1,5 +1,5 @@
 const config = require('./contentful.json')
-import axios from 'axios';
+
 module.exports = {
   env: {
     CTF_SPACE_ID: config.CTF_SPACE_ID,
@@ -31,7 +31,10 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
-  plugins: ['~plugins/filters.js'],
+  plugins: [
+    '~/plugins/contentful',
+    '~plugins/filters.js'
+  ],
   modules: ['@nuxtjs/style-resources'],
   styleResources: {
     scss: [
