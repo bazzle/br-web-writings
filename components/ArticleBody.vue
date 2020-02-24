@@ -23,6 +23,7 @@ export default {
 .article{
   &__content{
     @include text-body;
+    @include col-std(auto);
     &__image{
       padding:$text-padding-std*2 0;
       img{
@@ -30,9 +31,6 @@ export default {
         height:auto;
         box-shadow:$shadow;
       }
-    }
-    p, ul, ol, h1, h2, h3, h4, h5, code, hr{
-      @include col-std(75%);
     }
     p code{
       margin-left:0;

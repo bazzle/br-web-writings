@@ -1,12 +1,12 @@
 <template>
   <div class="article-preview">
     <div class="article-preview__inner">
-      <h2 class="article-preview__title"><a :href="postItem.fields.slug">{{postItem.fields.title}}</a></h2>
+      <h2 class="article-preview__title"><nuxt-link :to="postItem.fields.slug">{{postItem.fields.title}}</nuxt-link></h2>
       <p class="article-preview__meta"><span>{{ postItem.fields.publishDate | formatDate }}</span> in <span>{{postItem.fields.category}}</span></p>
       <div class="article-preview__excerpt">
         <p>{{postItem.fields.description}}</p>
       </div>
-      <a class="button button--outline" :href="postItem.fields.slug">Read more</a>
+      <nuxt-link :to="postItem.fields.slug" class="button button--outline">Read more</nuxt-link>
     </div>
   </div>
 </template>
@@ -29,17 +29,14 @@ export default {
     }
     &__meta{
       margin-bottom:$text-padding-std;
+      font-size: $font-size-small;
       span{
-        color:$color-brand;
         font-weight:$bold;
       }
     }
     &__excerpt{
       @include text-body;
       margin-bottom:$text-padding-std;
-    }
-    &:first-of-type{
-      padding-top:$text-padding-std*2;
     }
   }
 </style>

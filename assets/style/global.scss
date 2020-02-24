@@ -4,6 +4,7 @@ html, body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 svg {
@@ -75,14 +76,13 @@ a {
 // button
 
 .button {
-    background-color: $color-brand;
     border: 0;
-    color: $white;
+    color: inherit;
     padding: .8em 1em;
     border-radius: 3px;
     font-weight: $bold;
     display: inline-block;
-    font-size: inherit;
+    font-size: $font-size-small;
     line-height: 1.4;
     letter-spacing: .01em;
     transition: background-color .2s;
@@ -125,10 +125,52 @@ a {
         }
     }
 
+    &--nobox {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        text-decoration: none;
+
+        span {
+            text-decoration: none;
+        }
+
+        &:hover {
+            color: inherit;
+            background-color: transparent;
+        }
+
+        .dark-mode & {
+            color: $white;
+
+            &:hover {
+                background-color: unset;
+            }
+        }
+    }
+
     &--outline {
         background-color: transparent;
         border: 1px solid $color-brand;
         color: $black;
+
+        .dark-mode & {
+            color: $white;
+        }
+    }
+
+    &--stripped {
+        background-color: transparent;
+        color: inherit;
+        text-decoration: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+
+        span {
+            text-decoration: none;
+        }
     }
 }
 

@@ -1,10 +1,12 @@
 <template>
 
-  <div class="post-index panel">
+  <div class="panel">
     <div class="panel__inner nopadding-top">
       <div class="row row--nocols">
-        <div class="post-index__item" v-for="post in postFeed" :key="post.id" >
-          <ArticlePreview :postItem="post" />
+        <div class="post-index">
+          <div class="post-index__item" v-for="post in postFeed" :key="post.id" >
+            <ArticlePreview :postItem="post" />
+          </div>
         </div>
       </div>
     </div>
@@ -25,6 +27,16 @@ export default {
 </script>
 <style lang="scss" scoped>
   .post-index{
-    min-height:70vh;
+    min-height:100vh;
+    padding-top:$text-padding-std*3;
+    &__item{
+      padding-top:$text-padding-std*2;
+      @include bp-minus($bp1){
+        padding-top:$text-padding-std;
+      }
+      &:first-of-type{
+        padding-top: 0;
+      }
+    }
   }
 </style>

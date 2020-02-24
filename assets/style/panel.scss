@@ -3,9 +3,13 @@
     overflow-x: hidden;
     overflow-y: hidden;
     position: relative;
-
+    background-color:$white;
+    .dark-mode &{
+        color:white;
+        background-color:$black-darken7;
+    }
     &__inner {
-        width: 90vw;
+        width: 100vw;
         padding-left: 5vw;
         padding-right: 5vw;
         padding-top: $text-padding-std * 2;
@@ -17,8 +21,8 @@
         max-width: $site-width;
 
         @include bp($bp2) {
-            padding-top: $text-padding-std * 4;
-            padding-bottom: $text-padding-std * 4;
+            padding-top: $text-padding-std * 2;
+            padding-bottom: $text-padding-std * 2;
         }
 
 
@@ -32,11 +36,6 @@
                 padding-top: $text-padding-std * 3;
                 padding-bottom: $text-padding-std * 3;
             }
-        }
-
-        &--padding-std {
-            padding-top: $text-padding-std;
-            padding-bottom: $text-padding-std;
         }
     }
 
@@ -86,20 +85,10 @@
         }
     }
 
-    &-header {
-        background-color: $white;
-    }
-
-    &-about {
-        background-color: $white;
-    }
-
-    &-footer {
-        background-color: $gray;
-        color: $black;
-    }
-
     &--white-darken {
         background-color: $white-darken;
+        .dark-mode & {
+            background-color: $black-darken10;
+        }
     }
 }

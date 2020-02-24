@@ -33,6 +33,9 @@ $black: #262626;
 $white: #ffffff;
 $gray: #f2f2f2;
 $white-darken: darken($white, 5);
+$black-darken: darken($black, 5);
+$black-darken7: darken($black, 7);
+$black-darken10: darken($black, 10);
 $black-lighten: lighten($black, 20);
 $color-text: #444444;
 
@@ -48,12 +51,16 @@ $font-std: "Rubik", sans-serif;
 
 // font-size;
 $font-size-base: 62.5%;
-$font-size-std: 1.5rem;
+$font-size-small: 1.7rem;
+$font-size-std: 2.2rem;
+$font-size-large: 3rem;
+$font-size-big: 4rem;
 
 // font weights
 $thin: 300;
 $std: 400;
 $bold: 500;
+$chunky: 700;
 
 // font margins
 $text-padding-std: 3rem;
@@ -95,43 +102,38 @@ $grid-space: $text-padding-std;
 @mixin text-leadin {
     p {
         font-weight: $std;
-        font-size: 2.3rem;
+        font-size: $font-size-large;
 
-        @include bp($bp2) {
-            font-weight: $thin;
-            font-size: 3rem;
-        }
-    }
-}
-
-@mixin text-leadin--tight {
-    p {
-        font-weight: $std;
-        font-size: 2.3rem;
-
-        //line-height:1.2;
-        @include bp($bp2) {
-            font-weight: $thin;
-            font-size: 3rem;
-            line-height: 1.2;
+        @include bp-minus($bp1) {
+            font-size: $font-size-std;
         }
     }
 }
 
 @mixin text-title {
-    font-weight: $std;
+    font-weight: $bold;
     font-size: 2.3rem;
 
     @include bp($bp2) {
-        font-weight: $std;
+        font-weight: $bold;
         font-size: 3rem;
     }
 }
 
 @mixin text-title-item {
-    font-weight: $std;
-    line-height: 1.1;
+    font-weight: $bold;
+    line-height: 1.2;
+
+    @include bp-minus($bp1) {
+        font-size: $font-size-big;
+    }
+
+
     font-size: 2.2em;
+
+    a {
+        border-bottom: 3px solid $color-brand;
+    }
 
     @include bp($bp2) {
         font-size: 4rem;
@@ -139,9 +141,13 @@ $grid-space: $text-padding-std;
 }
 
 @mixin text-title-pagehead {
-    font-weight: $std;
-    line-height: 1.1;
-    font-size: 2.8em;
+    font-weight: $bold;
+    line-height: 1.4;
+    font-size: $font-size-big;
+
+    span {
+        border-bottom: 6px solid $color-brand;
+    }
 
     @include bp($bp2) {
         font-size: 6rem;
@@ -154,22 +160,22 @@ $grid-space: $text-padding-std;
 
 // styled links
 @mixin link-styled {
-    font-size: 2.3rem;
     font-weight: $std;
 
     a {
         @include text-underline($color-brand);
     }
-
-    @include bp($bp2) {
-        font-size: 2.3rem;
-    }
 }
 
 // text body
 @mixin text-body {
-    font-size: 2.2rem;
+    font-size: $font-size-std;
     font-weight: $thin;
+
+    @include bp-minus($bp1) {
+        font-size: $font-size-small;
+    }
+
 
     strong {
         font-weight: $bold;
@@ -178,15 +184,46 @@ $grid-space: $text-padding-std;
     h1, h2, h3, h4, h5 {
         @include text-title;
 
-        padding: 0;
-        margin: 0;
-        padding: $text-padding-std 0;
+        &:first-of-type {
+            padding-top: 0;
+        }
+
+        border-bottom: 2px solid red;
+        display: inline;
+        line-height: 1.6;
+
+        &:before {
+            content: '';
+            height: $text-padding-std;
+            display: block;
+        }
+
+        &:after {
+            content: '';
+            height: $text-padding-std;
+            display: block;
+        }
     }
 
-    p, ol, ul, hr {
+    p, ol, ul {
         padding: 0;
         margin: 0;
-        padding: ($text-padding-std / 2) 0;
+        margin-top: $text-padding-std / 2;
+        margin-bottom: $text-padding-std / 2;
+    }
+
+    hr {
+        margin-top: $text-padding-std * 4;
+        margin-bottom: $text-padding-std * 2;
+    }
+
+    h1, h2, h3, h4, h5 {
+        margin-top: $text-padding-std;
+        margin-bottom: $text-padding-std;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
     }
 
     code {
@@ -194,6 +231,12 @@ $grid-space: $text-padding-std;
         background: $gray;
         padding: $text-padding-std;
         color: $black;
+        border-radius: 4px;
+
+        .dark-mode & {
+            color: white;
+            background-color: $black-darken10;
+        }
     }
 
     p > code {
@@ -201,12 +244,9 @@ $grid-space: $text-padding-std;
     }
 
     hr {
-        margin: 0;
-        padding: 0;
         background-color: $color-brand;
-        margin: $text-padding-std*2 0 $text-padding-std;
-        border:none;
-        height:2px;
+        border: none;
+        height: 4px;
     }
 
     ul {
@@ -259,11 +299,12 @@ $border-brand-feint: rgba($color-brand, 0.2) solid 1px;
 ///////// LAYOUT AND GRID ////////////////////////////////////////////////////////////////////////
 
 @mixin col-std($width) {
-    width: 100%;
+    width: auto;
 
     @include bp($bp2) {
-        width: $width;
-        margin-left: 25%;
+        position: relative;
+        width: 75%;
+        left: 25%;
     }
 }
 
@@ -377,6 +418,27 @@ $padding-std: 2.5rem;
     display: flex;
     align-items: flex-start;
     justify-conten: flex-end;
+}
+
+// ANIMATION ====================================================================================================
+
+// fancy transitions
+$move-whip: cubic-bezier(0.8, 0, 0.3, 1);
+$move-snap: cubic-bezier(0.7, -0.5, 0.3, 1.5);
+$move-snap-in: cubic-bezier(0.6, -0.3, 0.7, 0);
+$move-snap-out: cubic-bezier(0.2, 0.9, 0.3, 1.3);
+
+@mixin transition($property: all, $speed: 0.2s, $anim: linear) {
+    transition-property: $property;
+    transition-duration: $speed;
+    transition-timing-function: $anim;
+}
+
+// multiple arguments
+@mixin transitions($speed, $anim, $property...) {
+    transition-property: $property;
+    transition-duration: $speed;
+    transition-timing-function: $anim;
 }
 
 ///////// MISC ////////////////////////////////////////////////////////////////////////

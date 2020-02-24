@@ -1,9 +1,9 @@
 <template>
-	<header class="article__header panel">
+	<header class="article__header panel panel--white-darken">
 			<div class="panel__inner panel__inner--padding-shallow">
 				<div class="row row--nocols">
 					<div class="article__header__inner">
-						<h2 class="article__header__title">{{this.postData.fields.title}}</h2>
+						<h2 class="article__header__title"><span>{{this.postData.fields.title}}</span></h2>
 						<p class="article__header__meta"><span>{{ this.postData.fields.publishDate | formatDate }}</span> in <span>{{ this.postData.fields.category }}</span></p>
 						<div class="article__header__excerpt">
               <p>
@@ -24,22 +24,24 @@ export default {
 <style lang="scss" scoped>
 .article{
   &__header{
-    background-color:$gray;
     &__inner{
       @include col-std(75%);
     }
     &__title{
       @include text-title-pagehead;
-      padding-bottom:$text-padding-std;
+      margin-bottom:$text-padding-std;
+      @include bp($bp2){
+        margin-bottom:$text-padding-std*2;
+      }
     }
     &__meta{
-      padding-bottom:$text-padding-std;
+      font-size:$font-size-small;
+      margin-bottom:$text-padding-std;
       span{
-        color:$color-brand;
         font-weight:$bold;
       }
       @include bp($bp2){
-        padding-bottom:$text-padding-std*2;
+        margin-bottom:$text-padding-std*2;
       }
         
     }
