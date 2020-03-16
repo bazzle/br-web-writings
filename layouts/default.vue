@@ -13,7 +13,7 @@ import BackTop from '~/components/BackTop.vue'
 export default {
   data(){
     return{
-      darkMode: true
+      darkMode: false
     }
   },
   methods: {

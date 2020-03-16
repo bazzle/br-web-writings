@@ -1,10 +1,12 @@
 <template>
+  <div>
   <no-ssr>
-  <a v-if="scrolledTop === false" href="#" class="backtop trigger-backtop" role="button">
-    <span>Back to top</span>
-    <icon-base width="20" height="20" viewBox="0 0 96 66" icon-name="Arrow"><icon-Arrow /></icon-base>
-  </a>
+    <a v-if="scrolling === false" href="#" class="backtop trigger-backtop" role="button">
+      <span>Back to top</span>
+      <icon-base width="20" height="20" viewBox="0 0 96 66" icon-name="Arrow"><icon-Arrow /></icon-base>
+    </a>
   </no-ssr>
+  </div>
 </template>
 <script>
 import iconBase from '@/components/icons/iconBase'
@@ -13,7 +15,7 @@ export default {
   name: "BackTop",
   data: function(){
     return{
-      scrolledTop: true
+      scrolling: false
     }
   },
   components: {
@@ -21,21 +23,20 @@ export default {
     iconArrow
   },
   methods: {
-    checkTop(){
-      const contentstart = document.querySelector('body');
-      const contentoffset = contentstart.getBoundingClientRect().top + pageYOffset;
-      if ( pageYOffset === 0 ){
-        this.scrolledTop = true
-      } else {
-        this.scrolledTop = false
-      }
+    checkScroll(){
+      this.scrolling = true
+      // Set a timeout to run after scrolling ends
+      let isScrolling = setTimeout(function() {
+        console.log('stop');
+        this.scrolling = false
+      }, 1000);
     }
   },
   mounted() {
-    document.addEventListener('scroll', this.checkTop);
+    document.addEventListener('scroll', this.checkScroll);
   },
   destroyed() {
-    document.removeEventListener('scroll', this.checkTop);
+    document.removeEventListener('scroll', this.checkScroll);
   }
 }
 </script>
